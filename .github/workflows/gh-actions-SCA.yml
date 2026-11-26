@@ -27,7 +27,7 @@ jobs:
       run: |
         npm install -g @cyclonedx/cyclonedx-npm@latest
         #npm run sbom
-        cyclonedx-npm --omit=dev --output-format=XML --output-file=${{ github.workspace }}/bom.xml --sv=1.6
+        cyclonedx-npm --omit=dev --output-format=JSON --output-file=${{ github.workspace }}/bom.json --sv=1.5
       shell: bash
     - name: Upload BOM to Dependency-Track
       run: |
@@ -36,7 +36,7 @@ jobs:
              -H 'X-API-Key: ${{ secrets.DTRACKAPIKEY }}' \
              -F 'project=${{ secrets.DTRACKPROJID }}' \
              -F 'projectname=DevSecOps' \
-             -F 'bom=@${{ github.workspace }}/bom.xml'
+             -F 'bom=@${{ github.workspace }}/bom.json'
       continue-on-error: true
 
                     
