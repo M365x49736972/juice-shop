@@ -26,7 +26,8 @@ jobs:
     - name: Create BOM
       run: |
         npm install -g @cyclonedx/cyclonedx-npm@latest
-        npm run sbom
+        cyclonedx-npm --omit=dev --output-format=JSON --output-file=bom.json --sv "1.6"
+        #npm run sbom
       shell: bash
     - name: Upload BOM to Dependency-Track
       run: |
